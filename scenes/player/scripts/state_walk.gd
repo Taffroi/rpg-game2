@@ -20,7 +20,7 @@ func exit() -> void:
 func process(_delta : float) -> State:
 	if MovementController.move_dir == Vector2.ZERO:
 		return idle
-	player.animation_player.speed_scale = animation_speed()
+	player.animation_player.speed_scale = movement_controller.move_input_pressure
 	player.velocity = movement_controller.move_dir * move_speed
 	
 	if player.set_direction():
@@ -37,10 +37,3 @@ func handle_input(_event : InputEvent) -> State:
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null
-	
-func animation_speed() -> float:
-	var animation_speed = abs(movement_controller.move_dir)
-	if abs(movement_controller.move_dir.x) > abs(movement_controller.move_dir.y):
-		return animation_speed.x
-	else:
-		return animation_speed.y
