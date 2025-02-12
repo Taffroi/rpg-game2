@@ -8,6 +8,7 @@ extends Node
 @export var move_max_threshold : float = 0.95
 var move_input = Vector2.ZERO
 var move_dir = Vector2.ZERO
+var move_input_pressure : float = 0
 
 
 
@@ -18,6 +19,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move_input = Input.get_vector("left","right","up","down",move_input_deadzone)
+	
+	move_input_pressure = sqrt((move_dir.x**2)+(move_dir.y**2))
 	
 	if Vector2.ZERO.distance_to(move_input) > move_input_deadzone*sqrt(2.0):
 	

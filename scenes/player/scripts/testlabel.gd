@@ -9,6 +9,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.text = "move_dir ="+str(movement_controller.move_dir)+"\nmove_input ="+str(movement_controller.move_input)+"\nspeed ="+str(player.get_player_current_speed())+"\nanimation_speed ="+str(player.animation_player.speed_scale)+"\nmax_joystick (marche pas)="+str(abs(Input.get_action_strength("joystick_pressure")))
+	self.text = "move_dir ="+str(movement_controller.move_dir)+"\nmove_input ="+str(movement_controller.move_input)+"\nspeed ="+str(player.get_player_current_speed())+"\nanimation_speed ="+str(player.animation_player.speed_scale)+"\nmax_joystick (marche pas)="+str(abs(movement_controller.move_input_pressure))
 	
 	pass
