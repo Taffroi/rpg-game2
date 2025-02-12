@@ -20,7 +20,7 @@ func exit() -> void:
 func process(_delta : float) -> State:
 	if MovementController.move_dir == Vector2.ZERO:
 		return idle
-	player.animation_player.speed_scale = movement_controller.move_input_pressure
+	player.animation_player.speed_scale = snapped(movement_controller.move_input_pressure,0.01)
 	player.velocity = movement_controller.move_dir * move_speed
 	
 	if player.set_direction():

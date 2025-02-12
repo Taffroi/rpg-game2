@@ -3,7 +3,8 @@ class_name State_Attack extends State
 var attacking : bool = false
 
 @export var attack_sound = AudioStream
-@export_range(1,20,0.5) var deceleration : float = 5.0 # variable slider min 1 max 20 incrémentation 0.5
+@export_range(1,20,0.5) var deceleration : float = 5.0
+@export_range(1,8,0.5) var dash_speed : float = 3.0 # variable slider min 1 max 20 incrémentation 0.5
 
 @onready var walk: State = $"../Walk" # alias "walk" pour désigner State_Walk
 @onready var idle: State = $"../Idle"
@@ -15,7 +16,7 @@ var attacking : bool = false
 
 # Qu'est-ce qui se passe quand le joueur entre dans un nouvel état?
 func enter() -> void:
-	player.velocity += ceil(player.velocity)*5
+	player.velocity *= dash_speed
 	player.update_animation("attack")
 	attack_anim.play("attack_"+player.anim_direction())
 	animation_player.animation_finished.connect(end_attack)

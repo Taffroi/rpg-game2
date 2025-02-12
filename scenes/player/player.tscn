@@ -553,6 +553,7 @@ move_speed = 450.0
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_ls4ux")
 attack_sound = ExtResource("8_gosf7")
+dash_speed = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
