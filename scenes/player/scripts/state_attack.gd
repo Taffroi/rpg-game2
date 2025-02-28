@@ -10,10 +10,14 @@ var attacking : bool = false
 @onready var idle: State = $"../Idle"
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var attack_anim: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
+@onready var attack_anim: AnimationPlayer = $"../../PlayerSprite/AttackEffectSprite/AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../Node/AudioStreamPlayer2D"
 @onready var hurtbox: Hurtbox = %AttackHurtbox
 
+# Qu'est-ce qui se passe quand on initie cet état?
+func init() -> void:
+	pass
+	
 # Qu'est-ce qui se passe quand le joueur entre dans un nouvel état?
 func enter() -> void:
 	player.velocity *= dash_speed

@@ -802,8 +802,6 @@ autoplay = "RESET"
 
 [node name="Hurtbox" parent="." instance=ExtResource("8_1wg1w")]
 unique_name_in_owner = true
-collision_mask = 256
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -4.66667)

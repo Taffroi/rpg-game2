@@ -3,6 +3,10 @@ class_name State_Idle extends State
 @onready var walk: State = $"../Walk" # alias "walk" pour désigner State_Walk
 @onready var attack: State = $"../Attack"
 
+# Qu'est-ce qui se passe quand on initie cet état?
+func init() -> void:
+	pass
+
 # Qu'est-ce qui se passe quand le joueur entre dans un nouvel état?
 func enter() -> void:
 	player.update_animation("idle")

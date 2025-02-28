@@ -6,7 +6,10 @@ class_name State_Walk extends State
 
 @export var move_speed : float = 500.0
 	
-# Qu'est-ce qui se passe quand le joueur entre dans un nouvel état?
+# Qu'est-ce qui se passe quand on initie cet état?
+func init() -> void:
+	pass
+
 func enter() -> void:
 	player.update_animation("walk")
 	pass
@@ -20,7 +23,7 @@ func exit() -> void:
 func process(_delta : float) -> State:
 	if MovementController.move_dir == Vector2.ZERO:
 		return idle
-	player.animation_player.speed_scale = snapped(movement_controller.move_input_pressure,0.01)
+	player.animation_player.speed_scale = snapped(movement_controller.move_input_pressure,0.01) # snapped = tous les 0.01
 	player.velocity = movement_controller.move_dir * move_speed
 	
 	if player.set_direction():

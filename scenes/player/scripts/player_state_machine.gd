@@ -33,10 +33,17 @@ func init(_player : Player) -> void: # fonction pour initier les états du joueu
 		if c is State:
 			states.append(c) # relie les nodes enfants à PlayerStateMachine
 			
-	if states.size() > 0: # si la liste de states n'est pas vide
-		states[0].player = _player 
-		change_state(states[0]) # applique le 1er état du joueur par défaut (normalement Idle)
-		process_mode = Node.PROCESS_MODE_INHERIT # activer en fonction de si la node Player est activée ou non
+	if states.size() == 0:
+		return
+		
+	states[0].player = _player 
+	states[0].player_state_machine = self
+	
+	for states in states:
+		states.init()
+		
+	change_state(states[0]) # applique le 1er état du joueur par défaut (normalement Idle)
+	process_mode = Node.PROCESS_MODE_INHERIT # activer en fonction de si la node Player est activée ou non
 
 
 func change_state(new_state: State) -> void:
