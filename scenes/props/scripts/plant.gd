@@ -6,6 +6,6 @@ func _ready() -> void:
 	$Hitbox.damaged.connect(take_damage)
 	pass # Replace with function body.
 	
-func take_damage(_damage : int) -> void:
+func take_damage(hurtbox : Hurtbox) -> void:
 	queue_free()
 	pass

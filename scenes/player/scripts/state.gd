@@ -2,9 +2,11 @@ class_name State extends Node
 
 # Crée une variable player globale entre tous les nodes, de type Player (la node)
 static var player: Player
+static var player_state_machine: PlayerStateMachine
 
-func _ready() -> void:
-	pass # Replace with function body.
+# Qu'est-ce qui se passe quand on initie cet état?
+func init() -> void:
+	pass
 	
 # Qu'est-ce qui se passe quand le joueur entre dans un nouvel état?
 func enter() -> void:

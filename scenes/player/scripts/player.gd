@@ -1,24 +1,31 @@
 class_name Player extends CharacterBody2D
 
+signal direction_changed(new_direction: Vector2)
+signal player_damaged(hurtbox : Hurtbox)
+
 var cardinal_direction : Vector2 = Vector2.DOWN
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 # 8 directions => const DIR_4 = [ Vector2.RIGHT, Vector2(1,1), Vector2.DOWN, Vector2(-1,1), Vector2.LEFT, Vector2(1,-1), Vector2.UP, Vector2(-1,-1) ]
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var state_machine: PlayerStateMachine = $StateMachine
-@onready var movement_controller: MovementController = $MovementController
-@onready var walk: State_Walk = $StateMachine/Walk
+var invulnerable : bool = false
+var hp : int = 6
+var max_hp : int = 6
 
 var player_current_speed : float = 0
 
-signal direction_changed(new_direction: Vector2)
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $PlayerSprite
+@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var movement_controller: MovementController = $MovementController
+@onready var walk: State_Walk = $StateMachine/Walk
+@onready var hitbox: Hitbox = $Hitbox
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	state_machine.init(self) # appelle la fonction Initialize sur lui-même (c le Player)
 	GlobalPlayerManager.player = self
+	state_machine.init(self) # appelle la fonction Initialize sur lui-même (c le Player)
+	hitbox.damaged.connect(_take_damage)
+	update_hp(99)
 	pass # Replace with function body.
 
 
@@ -65,3 +72,29 @@ func anim_direction() -> String:
 		return "up"
 	else:
 		return "side"
+		
+func _take_damage(hurtbox: Hurtbox) -> void:
+	if invulnerable == true:
+		return
+	update_hp(-hurtbox.damage)
+	if hp > 0:
+		player_damaged.emit(hurtbox)
+	else:
+		player_damaged.emit(hurtbox)
+		update_hp(99)
+		#pour le laisser en vie en attendant qu'on test
+	pass
+	
+func update_hp(delta:int) -> void:
+	hp = clampi(hp + delta, 0, max_hp) # calcule les HP en limitant le max
+	pass
+	
+func make_invulnerable(_duration : float = 1.0) -> void:
+	invulnerable = true
+	hitbox.monitoring = false
+	
+	await get_tree().create_timer(_duration).timeout
+	
+	invulnerable = false
+	hitbox.monitoring = true
+	pass
