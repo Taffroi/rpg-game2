@@ -1,17 +1,17 @@
 [gd_scene load_steps=34 format=4 uid="uid://bfof4wnsrdmft"]
 
-[ext_resource type="Script" path="res://scenes/enemies/scripts/enemy.gd" id="1_gcjg3"]
+[ext_resource type="Script" uid="uid://bpdd75m48p2yr" path="res://scenes/enemies/scripts/enemy.gd" id="1_gcjg3"]
 [ext_resource type="Texture2D" uid="uid://ct3x8g40fde0k" path="res://sprites/characters/Shadow.png" id="1_upkwc"]
 [ext_resource type="Texture2D" uid="uid://bjfjohscai8aj" path="res://sprites/enemies/slime/Slime.png" id="2_2vml1"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/enemy_test_label.gd" id="2_nvr7g"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/EnemyStateMachine.gd" id="4_4jl2w"]
+[ext_resource type="Script" uid="uid://s1dals0fv2ns" path="res://scenes/enemies/scripts/enemy_test_label.gd" id="2_nvr7g"]
+[ext_resource type="Script" uid="uid://u002ssohpxpd" path="res://scenes/enemies/scripts/EnemyStateMachine.gd" id="4_4jl2w"]
 [ext_resource type="AudioStream" uid="uid://53sasrsehhm8" path="res://audio/hit_00.wav" id="4_d1gue"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/states/EnemyStateIdle.gd" id="5_f3jc2"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/states/EnemyStateWander.gd" id="6_uk42u"]
+[ext_resource type="Script" uid="uid://ducjag586ym8a" path="res://scenes/enemies/scripts/states/EnemyStateIdle.gd" id="5_f3jc2"]
+[ext_resource type="Script" uid="uid://cinw5hqpokxn4" path="res://scenes/enemies/scripts/states/EnemyStateWander.gd" id="6_uk42u"]
 [ext_resource type="PackedScene" uid="uid://k147lo51ey8x" path="res://scenes/general/hurtbox/hurtbox.tscn" id="8_1wg1w"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/states/enemy_state_stun.gd" id="8_bm5cc"]
+[ext_resource type="Script" uid="uid://dlhhjk8fn27fb" path="res://scenes/enemies/scripts/states/enemy_state_stun.gd" id="8_bm5cc"]
 [ext_resource type="Texture2D" uid="uid://d3d6100wptkhw" path="res://sprites/enemies/DestroySmoke.png" id="10_d0pg8"]
-[ext_resource type="Script" path="res://scenes/enemies/scripts/states/enemy_state_destroy.gd" id="10_jl34e"]
+[ext_resource type="Script" uid="uid://3hyh0saq8rbd" path="res://scenes/enemies/scripts/states/enemy_state_destroy.gd" id="10_jl34e"]
 [ext_resource type="PackedScene" uid="uid://b1w1wnu0a4s14" path="res://scenes/general/hitbox/hitbox.tscn" id="11_1bcdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_guve0"]
@@ -652,19 +652,19 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ed28"]
 _data = {
-"RESET": SubResource("Animation_aoro8"),
-"destroy_down": SubResource("Animation_4mymc"),
-"destroy_side": SubResource("Animation_sk5r5"),
-"destroy_up": SubResource("Animation_m0bcu"),
-"idle_down": SubResource("Animation_mcagt"),
-"idle_side": SubResource("Animation_3fk6w"),
-"idle_up": SubResource("Animation_r5wea"),
-"stun_down": SubResource("Animation_n6hmx"),
-"stun_side": SubResource("Animation_h150m"),
-"stun_up": SubResource("Animation_0x7ew"),
-"walk_down": SubResource("Animation_auktp"),
-"walk_side": SubResource("Animation_br3vx"),
-"walk_up": SubResource("Animation_3uye4")
+&"RESET": SubResource("Animation_aoro8"),
+&"destroy_down": SubResource("Animation_4mymc"),
+&"destroy_side": SubResource("Animation_sk5r5"),
+&"destroy_up": SubResource("Animation_m0bcu"),
+&"idle_down": SubResource("Animation_mcagt"),
+&"idle_side": SubResource("Animation_3fk6w"),
+&"idle_up": SubResource("Animation_r5wea"),
+&"stun_down": SubResource("Animation_n6hmx"),
+&"stun_side": SubResource("Animation_h150m"),
+&"stun_up": SubResource("Animation_0x7ew"),
+&"walk_down": SubResource("Animation_auktp"),
+&"walk_side": SubResource("Animation_br3vx"),
+&"walk_up": SubResource("Animation_3uye4")
 }
 
 [sub_resource type="Animation" id="Animation_jqlxx"]
@@ -725,8 +725,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv44i"]
 _data = {
-"RESET": SubResource("Animation_jqlxx"),
-"destroy": SubResource("Animation_npofn")
+&"RESET": SubResource("Animation_jqlxx"),
+&"destroy": SubResource("Animation_npofn")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_maiik"]
