@@ -693,7 +693,7 @@ hframes = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite/AttackEffectSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_ju0rw")
+&"": SubResource("AnimationLibrary_ju0rw")
 }
 autoplay = "no_attack"
 
@@ -709,7 +709,7 @@ debug_color = Color(0.995827, 0.0569411, 5.77569e-07, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gebb8")
+&"": SubResource("AnimationLibrary_gebb8")
 }
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -753,6 +753,6 @@ debug_color = Color(0.643368, 0.52321, 0, 0.42)
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vw8s4")
+&"": SubResource("AnimationLibrary_vw8s4")
 }
 autoplay = "RESET"

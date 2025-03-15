@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://m1rt55xscitl"]
+
+[ext_resource type="Texture2D" uid="uid://dgujrqpnqrgno" path="res://sprites/gui/player_hud/gui-health.png" id="1_v3l4o"]
+[ext_resource type="PackedScene" uid="uid://coy72ypio65o6" path="res://scenes/gui/player_hud/heart_gui.tscn" id="2_p56wo"]
+
+[node name="PlayerHud" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_v3l4o")
+region_enabled = true
+region_rect = Rect2(29, 0, 34, 8)
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" parent="Control/HFlowContainer" instance=ExtResource("2_p56wo")]
+layout_mode = 2
+
+[node name="Heart2" parent="Control/HFlowContainer" instance=ExtResource("2_p56wo")]
+layout_mode = 2
+
+[node name="Heart3" parent="Control/HFlowContainer" instance=ExtResource("2_p56wo")]
+layout_mode = 2
