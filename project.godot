@@ -21,6 +21,7 @@ LevelManager="*res://00_Globals/global_level_manager.gd"
 PlayerHud="*res://scenes/gui/player_hud/player_hud.tscn"
 GlobalPlayerManager="*res://00_Globals/global_player_manager.gd"
 MovementController="*res://00_Globals/MovementController.gd"
+SceneTransition="*res://scenes/gui/scene_transition/scene_transition.tscn"
 
 [display]
 

@@ -5,8 +5,7 @@
 
 [node name="PlayerSpawn" type="Node2D"]
 modulate = Color(0.2775, 0.75, 0.332625, 1)
-position = Vector2(0, -66)
-scale = Vector2(3, 3)
+position = Vector2(0, -22)
 script = ExtResource("1_byhuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

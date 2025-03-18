@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ct3x8g40fde0k" path="res://sprites/characters/Shadow.png" id="1_upkwc"]
 [ext_resource type="Texture2D" uid="uid://bjfjohscai8aj" path="res://sprites/enemies/slime/Slime.png" id="2_2vml1"]
 [ext_resource type="Script" uid="uid://s1dals0fv2ns" path="res://scenes/enemies/scripts/enemy_test_label.gd" id="2_nvr7g"]
-[ext_resource type="Script" uid="uid://u002ssohpxpd" path="res://scenes/enemies/scripts/EnemyStateMachine.gd" id="4_4jl2w"]
+[ext_resource type="Script" uid="uid://u002ssohpxpd" path="res://scenes/enemies/scripts/enemy_state_machine.gd" id="4_4jl2w"]
 [ext_resource type="AudioStream" uid="uid://53sasrsehhm8" path="res://audio/hit_00.wav" id="4_d1gue"]
 [ext_resource type="Script" uid="uid://ducjag586ym8a" path="res://scenes/enemies/scripts/states/EnemyStateIdle.gd" id="5_f3jc2"]
 [ext_resource type="Script" uid="uid://cinw5hqpokxn4" path="res://scenes/enemies/scripts/states/EnemyStateWander.gd" id="6_uk42u"]
@@ -733,7 +733,6 @@ _data = {
 radius = 13.35
 
 [node name="Slime" type="CharacterBody2D"]
-scale = Vector2(3, 3)
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_gcjg3")
@@ -775,11 +774,14 @@ after_idle_state = NodePath("../Wander")
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_uk42u")
-wander_speed = 120.0
+wander_speed = 40.0
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_bm5cc")
+knockback_speed = 250.0
+decelerate = 8.0
+player_knockback_influence = 2.0
 next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]

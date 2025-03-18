@@ -12,7 +12,6 @@ size = Vector2(24, 16)
 
 [node name="Plant" type="Node2D"]
 position = Vector2(0, -26)
-scale = Vector2(3, 3)
 script = ExtResource("1_68f0v")
 metadata/_edit_group_ = true
 
