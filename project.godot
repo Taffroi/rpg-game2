@@ -18,15 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelManager="*res://00_Globals/global_level_manager.gd"
+PlayerHud="*res://scenes/gui/player_hud/player_hud.tscn"
 GlobalPlayerManager="*res://00_Globals/global_player_manager.gd"
 MovementController="*res://00_Globals/MovementController.gd"
-PlayerHud="*res://scenes/gui/player_hud/player_hud.tscn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
@@ -39,7 +38,8 @@ version_control/autoload_on_startup=true
 [file_customization]
 
 folder_colors={
-"res://scenes/": "blue"
+"res://scenes/": "blue",
+"res://sprites/": "yellow"
 }
 
 [input]
