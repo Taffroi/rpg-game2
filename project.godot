@@ -22,6 +22,7 @@ PlayerHud="*res://scenes/gui/player_hud/player_hud.tscn"
 GlobalPlayerManager="*res://00_Globals/global_player_manager.gd"
 MovementController="*res://00_Globals/MovementController.gd"
 SceneTransition="*res://scenes/gui/scene_transition/scene_transition.tscn"
+SaveManager="*res://00_Globals/global_save_manager.gd"
 PauseMenu="*res://scenes/gui/pause_menu/pause_menu.tscn"
 
 [display]

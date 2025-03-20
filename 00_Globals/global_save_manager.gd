@@ -1,0 +1,61 @@
+extends Node
+
+const SAVE_PATH = "user://" # Chemin du fichier où ça sauvegarde, LocalHost ?
+
+signal game_loaded
+signal game_saved
+
+var current_save : Dictionary = {
+	scene_path =  "",
+	player = {
+		hp = 1,
+		max_hp = 1,
+		pos_x = 0,
+		pos_y = 0
+	},
+	items = [],
+	persistence = [],
+	quests = [],
+} # Crée un dictionnaire avec plein d'infos sur ce qu'on veut sauvegarder
+
+func save_game() -> void:
+	update_player_data()
+	update_scene_path()
+	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE) # Ouvre un fichier save.sav à la location save_path
+	var save_json = JSON.stringify( current_save ) # Transforme le current_save en format JSON
+	file.store_line(save_json)
+	game_saved.emit()
+	pass
+	
+func load() -> void:
+	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.READ) # Ouvre un fichier save.sav à la location save_path
+	var json := JSON.new()
+	json.parse(file.get_line()) # Récupère la première ligne du fichier en JSON
+	var save_dict : Dictionary = json.get_data() as Dictionary # Transforme le JSON en data utilisable sur Godot
+	current_save = save_dict
+	
+	LevelManager.load_new_level(current_save.scene_path, "", Vector2.ZERO)
+	
+	await LevelManager.level_load_started
+	
+	GlobalPlayerManager.set_player_position(Vector2(current_save.player.pos_x, current_save.player.pos_y))
+	GlobalPlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
+	
+	await LevelManager.level_loaded
+	
+	game_loaded.emit()
+	pass
+
+func update_player_data() -> void:
+	var p : Player = GlobalPlayerManager.player
+	current_save.player.hp = p.hp
+	current_save.player.max_hp = p.max_hp
+	current_save.player.pos_x = p.global_position.x
+	current_save.player.pos_y = p.global_position.y
+	
+func update_scene_path() -> void:
+	var p : String = ""
+	for c in get_tree().root.get_children():
+		if c is Level:
+			p = c.scene_file_path
+	current_save.scene_path = p

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://coy72ypio65o6" path="res://scenes/gui/player_hud/heart_gui.tscn" id="2_p56wo"]
 
 [node name="PlayerHud" type="CanvasLayer"]
+layer = 2
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 script = ExtResource("1_17ee5")
@@ -20,6 +21,7 @@ offset_right = 1036.0
 offset_bottom = 28.6666
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(99, 12)

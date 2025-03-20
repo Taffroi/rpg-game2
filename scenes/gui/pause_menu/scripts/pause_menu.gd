@@ -7,6 +7,8 @@ var is_paused : bool = false
 
 func _ready() -> void:
 	hide_pause_menu()
+	button_save.pressed.connect(_on_save_pressed) # Si bouton pressé (signal), envoie la fonciton
+	button_load.pressed.connect(_on_load_pressed)
 	pass
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,3 +29,16 @@ func hide_pause_menu() -> void:
 	get_tree().paused = false
 	visible = false
 	is_paused = false
+	
+func _on_save_pressed() -> void:
+	if is_paused == false:
+		return
+	SaveManager.save_game()
+	hide_pause_menu()
+	
+func _on_load_pressed() -> void:
+	if is_paused == false:
+		return
+	SaveManager.load()
+	await LevelManager.level_load_started # Attend que l'écran soit noir pour enlever l'écran
+	hide_pause_menu()
