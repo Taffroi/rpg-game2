@@ -18,6 +18,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if InventoryMenu.gui_open == true:
+		move_dir = Vector2.ZERO
+		return
 	move_input = Input.get_vector("left","right","up","down",move_input_deadzone)
 	
 	move_input_pressure = clamp(sqrt((move_dir.x**2)+(move_dir.y**2)),0,1)

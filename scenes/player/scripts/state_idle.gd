@@ -29,6 +29,8 @@ func physics(_delta : float) -> State:
 	
 # Qu'est-ce qui se passe avec les touches dans cet état?
 func handle_input(_event : InputEvent) -> State:
+	if InventoryMenu.gui_open == true:
+		return null
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null
