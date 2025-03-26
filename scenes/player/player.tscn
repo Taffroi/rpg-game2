@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dsxsna32oalb5" path="res://audio/hit_player.wav" id="16_lihcy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2rngu"]
+font_size = 50
 
 [sub_resource type="Animation" id="Animation_hgovc"]
 length = 0.001
@@ -671,6 +672,7 @@ script = ExtResource("11_kyg3e")
 [node name="TestLabel" type="Label" parent="."]
 offset_right = 20.0
 offset_bottom = 14.0
+scale = Vector2(0.209079, 0.209079)
 label_settings = SubResource("LabelSettings_2rngu")
 script = ExtResource("2_brick")
 
