@@ -73,7 +73,6 @@ offset_bottom = 208.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
-text = "Description par défaut !"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -117,7 +116,7 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 columns = 5
 script = ExtResource("3_6vd2q")
-data = ExtResource("4_fmjv3")
+inventory_data = ExtResource("4_fmjv3")
 
 [node name="InventorySlot" parent="Control/PanelContainer/GridContainer" instance=ExtResource("2_7u3g1")]
 layout_mode = 2
@@ -148,3 +147,6 @@ layout_mode = 2
 
 [node name="InventorySlot10" parent="Control/PanelContainer/GridContainer" instance=ExtResource("2_7u3g1")]
 layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4

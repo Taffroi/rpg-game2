@@ -7,6 +7,7 @@ signal inventory_gui_hidden
 @onready var button_load: Button = $Control/VBoxContainer/Button_Load
 @onready var inventory: GridContainer = $Control/PanelContainer/GridContainer
 @onready var item_description: Label = $Control/ItemDescription
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var gui_open : bool = false
 
@@ -18,13 +19,10 @@ func _ready() -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
-		print("prout")
 		if gui_open == false:
 			show_gui()
-			print("non")
 		else:
 			hide_gui()
-			print("oui")
 		get_viewport().set_input_as_handled() # met l'input GUI en priorité ? je crois
 
 func show_gui() -> void:
@@ -61,3 +59,7 @@ func pause_game(state : bool) -> void:
 	
 func update_item_description(new_text : String) -> void:
 	item_description.text = new_text
+	
+func play_audio(audio : AudioStream) -> void:
+	audio_stream_player.stream = audio
+	audio_stream_player.play()
