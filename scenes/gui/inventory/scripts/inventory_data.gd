@@ -41,3 +41,36 @@ func slot_changed() -> void:
 				emit_changed()
 				print("inventory_data")
 	pass
+	
+	## Transformer l'inventaire en array
+func get_save_data() -> Array:
+	var item_save : Array = []
+	for i in slots.size():
+		item_save.append(item_to_save( slots[ i ] )) # Rajoute la valeur dans item_save
+	return item_save
+
+## Convertit chaque item de l'inventaire en dictionnaire
+func item_to_save( slot : SlotData ) -> Dictionary:
+	var result = { item = "", quantity = 0 }
+	if slot != null:
+		result.quantity = slot.quantity
+		if slot.item_data != null:
+			result.item = slot.item_data.resource_path # Récupère le chemin du fichier resource, pour qu'il recharge l'item une fois la save chargée
+	return result
+	
+func parse_save_data( save_data : Array) -> void:
+	var array_size = slots.size() # Garde le nombre de slots de l'inventaire
+	slots.clear()
+	slots.resize( array_size ) # Remet à 10
+	for i in save_data.size():
+		slots[ i ] = item_from_save( save_data[ i ] )
+	connect_slots()
+	
+func item_from_save( save_object : Dictionary ) -> SlotData:
+	if save_object.item == "":
+		return null
+	var new_slot : SlotData = SlotData.new() # Crée un nouveau SlotData en variable
+	new_slot.item_data = load( save_object.item )
+	new_slot.quantity = int ( save_object.quantity )
+	return new_slot
+	
