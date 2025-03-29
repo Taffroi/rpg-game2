@@ -1,5 +1,7 @@
 class_name EnemyStateDestroy extends EnemyState
 
+const PICKUP = preload("res://scenes/items/item_pickup.tscn")
+
 @export var anim_name : String = "destroy"
 @export var knockback_speed : float = 800
 @export var decelerate : float = 10
@@ -7,6 +9,9 @@ class_name EnemyStateDestroy extends EnemyState
 
 @export_category("AI")
 @export var next_state : EnemyState
+
+@export_category("Item Drops")
+@export var drops : Array[ DropData ]
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -32,6 +37,9 @@ func enter() -> void:
 	
 	enemy.update_animation(anim_name)
 	enemy.animation_player.animation_finished.connect(_on_animation_finished) # dès que l'anim est finie, fais la fonction _on_animation_finished
+	
+	disable_hurtbox()
+	drop_items()
 	pass
 	
 # Qu'est-ce qui se passe quand l'ennemi entre dans un nouvel état?
@@ -53,3 +61,23 @@ func _on_enemy_destroyed(hurtbox : Hurtbox) -> void :
 	
 func _on_animation_finished(_a : String) -> void :
 	enemy.queue_free()
+	
+func disable_hurtbox() -> void:
+	var hurtbox : Hurtbox = enemy.get_node_or_null("Hurtbox")
+	if hurtbox :
+		hurtbox.monitoring = false
+
+func drop_items() -> void:
+	if drops.size() == 0:
+		return
+	
+	for i in drops.size():
+		if drops[ i ] == null or drops[ i ].item == null:
+			continue
+		var drop_count : int = drops[ i ].get_drop_count()
+		for j in drop_count:
+			var drop : ItemPickup = PICKUP.instantiate() as ItemPickup
+			drop.item_data = drops[ i ].item
+			enemy.get_parent().call_deferred("add_child", drop) # add_child(drop) en mode safe = call_deferred, attend la fin du process de la frame
+			drop.global_position = enemy.global_position + Vector2(randf()*16,randf()*16)
+	pass

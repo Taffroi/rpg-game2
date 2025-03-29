@@ -5,6 +5,7 @@ class_name State_Walk extends State
 @onready var movement_controller: MovementController = $"../../MovementController"
 
 @export var move_speed : float = 500.0
+var speed_factor = 1
 	
 # Qu'est-ce qui se passe quand on initie cet état?
 func init() -> void:
@@ -23,9 +24,9 @@ func exit() -> void:
 func process(_delta : float) -> State:
 	if MovementController.move_dir == Vector2.ZERO:
 		return idle
-	player.animation_player.speed_scale = snapped(movement_controller.move_input_pressure,0.01) # snapped = tous les 0.01
-	player.velocity = movement_controller.move_dir * move_speed
-	
+	player.animation_player.speed_scale = snapped(movement_controller.move_input_pressure,0.01) * GlobalPlayerManager.player.speed_factor # snapped = tous les 0.01
+	player.velocity = movement_controller.move_dir * move_speed * GlobalPlayerManager.player.speed_factor
+	print(GlobalPlayerManager.player.speed_factor)
 	if player.set_direction():
 		player.update_animation("walk")
 	return null

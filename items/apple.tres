@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=8 format=3 uid="uid://4q5i5rhu14ma"]
+
+[ext_resource type="Script" uid="uid://32cwd1fpr0ex" path="res://items/item_effects/scripts/item_effect.gd" id="1_xmv7l"]
+[ext_resource type="Script" uid="uid://ck54ay0s87nkh" path="res://items/scripts/item_data.gd" id="2_5kqgm"]
+[ext_resource type="AudioStream" uid="uid://cmeedut5pjn0p" path="res://audio/hp-up.wav" id="2_ia5ia"]
+[ext_resource type="Script" uid="uid://oa74wwl700ee" path="res://items/item_effects/scripts/item_effect_increase_walk_speed.gd" id="2_rj1s8"]
+[ext_resource type="Texture2D" uid="uid://6ofolj0snqf4" path="res://sprites/items/items.png" id="3_rj1s8"]
+
+[sub_resource type="Resource" id="Resource_hbuy5"]
+script = ExtResource("2_rj1s8")
+factor = 0.1
+duration = 10.0
+audio = ExtResource("2_ia5ia")
+use_descrption = ""
+metadata/_custom_type_script = "uid://oa74wwl700ee"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbvxt"]
+atlas = ExtResource("3_rj1s8")
+region = Rect2(192, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_5kqgm")
+name = "Apple"
+description = "la pomme au gros caca :OOO"
+texture = SubResource("AtlasTexture_gbvxt")
+stack = 999
+effects = Array[ExtResource("1_xmv7l")]([SubResource("Resource_hbuy5")])
+metadata/_custom_type_script = "uid://ck54ay0s87nkh"

@@ -32,7 +32,9 @@ func enter() -> void:
 	attacking = true
 	
 	await get_tree().create_timer(0.075).timeout #crée un timer temporaire de 0.075 et attends qu'il se finisse
-	hurtbox.monitoring = true	
+	
+	if attacking: # pour pas que ça bug si jamais on attaque plus for some reason
+		hurtbox.monitoring = true	
 	
 	pass
 	

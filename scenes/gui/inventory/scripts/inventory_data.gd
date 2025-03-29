@@ -10,8 +10,9 @@ func add_item(item : ItemData, quantity : int = 1) -> bool: # bool pour dire si 
 	for s in slots:
 		if s: # si le slot n'est pas vide
 			if s.item_data == item: # si l'item existe déjà dans le slot
-				s.quantity += quantity
-				return true
+				if s.quantity + quantity <= s.item_data.stack :
+					s.quantity += quantity
+					return true
 				
 	for i in slots.size(): # pour le nombre de slots
 		if slots[i] == null: # si il tombe sur le 1er slot qui est vide

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bfof4wnsrdmft"]
+[gd_scene load_steps=41 format=4 uid="uid://bfof4wnsrdmft"]
 
 [ext_resource type="Script" uid="uid://bpdd75m48p2yr" path="res://scenes/enemies/scripts/enemy.gd" id="1_gcjg3"]
 [ext_resource type="Texture2D" uid="uid://ct3x8g40fde0k" path="res://sprites/characters/Shadow.png" id="1_upkwc"]
@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://d3d6100wptkhw" path="res://sprites/enemies/DestroySmoke.png" id="10_d0pg8"]
 [ext_resource type="Script" uid="uid://3hyh0saq8rbd" path="res://scenes/enemies/scripts/states/enemy_state_destroy.gd" id="10_jl34e"]
 [ext_resource type="PackedScene" uid="uid://b1w1wnu0a4s14" path="res://scenes/general/hitbox/hitbox.tscn" id="11_1bcdq"]
+[ext_resource type="Script" uid="uid://n1oqtvp3dv65" path="res://scenes/enemies/scripts/drop_data.gd" id="11_68pnf"]
+[ext_resource type="Resource" uid="uid://b665n4rccihn7" path="res://items/gem.tres" id="12_rk1jl"]
+[ext_resource type="Resource" uid="uid://mjo713naanuq" path="res://items/potion.tres" id="13_j1yls"]
+[ext_resource type="Resource" uid="uid://4q5i5rhu14ma" path="res://items/apple.tres" id="14_rk1jl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_guve0"]
 radius = 6.0
@@ -55,6 +59,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShadowSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.62396, 0.349795, 5.77569e-07, 0.509804)]
 }
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_a5jfh"]
@@ -141,6 +157,18 @@ tracks/5/keys = {
 "clips": PackedStringArray("destroy"),
 "times": PackedFloat32Array(0)
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShadowSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.62396, 0.349795, 5.77569e-07, 0.509804), Color(0.62, 0.351333, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_sk5r5"]
 resource_name = "destroy_side"
@@ -221,6 +249,18 @@ tracks/5/keys = {
 "clips": PackedStringArray("destroy"),
 "times": PackedFloat32Array(0)
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShadowSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.62396, 0.349795, 5.77569e-07, 0.509804), Color(0.62, 0.351333, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_m0bcu"]
 resource_name = "destroy_up"
@@ -300,6 +340,18 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": PackedStringArray("destroy"),
 "times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShadowSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.62396, 0.349795, 5.77569e-07, 0.509804), Color(0.62, 0.351333, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mcagt"]
@@ -667,6 +719,30 @@ _data = {
 &"walk_up": SubResource("Animation_3uye4")
 }
 
+[sub_resource type="Resource" id="Resource_ff1gp"]
+script = ExtResource("11_68pnf")
+item = ExtResource("12_rk1jl")
+probability = 100.0
+min_amount = 1.0
+max_amount = 5.0
+metadata/_custom_type_script = "uid://n1oqtvp3dv65"
+
+[sub_resource type="Resource" id="Resource_f78ev"]
+script = ExtResource("11_68pnf")
+item = ExtResource("13_j1yls")
+probability = 50.0
+min_amount = 1.0
+max_amount = 1.0
+metadata/_custom_type_script = "uid://n1oqtvp3dv65"
+
+[sub_resource type="Resource" id="Resource_j1yls"]
+script = ExtResource("11_68pnf")
+item = ExtResource("14_rk1jl")
+probability = 100.0
+min_amount = 5.0
+max_amount = 10.0
+metadata/_custom_type_script = "uid://n1oqtvp3dv65"
+
 [sub_resource type="Animation" id="Animation_jqlxx"]
 length = 0.001
 tracks/0/type = "value"
@@ -786,6 +862,7 @@ next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("10_jl34e")
+drops = Array[ExtResource("11_68pnf")]([SubResource("Resource_ff1gp"), SubResource("Resource_f78ev"), SubResource("Resource_j1yls"), null])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 4

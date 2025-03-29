@@ -12,6 +12,7 @@ var hp : int = 6
 var max_hp : int = 6
 
 var player_current_speed : float = 0
+var speed_factor : float = 1.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $PlayerSprite
@@ -99,3 +100,10 @@ func make_invulnerable(_duration : float = 1.0) -> void:
 	invulnerable = false
 	hitbox.monitoring = true
 	pass
+	
+func adjust_speed(_factor : float, _duration: float) -> void:
+	print(_factor)
+	speed_factor += _factor
+	print(speed_factor)
+	await get_tree().create_timer(_duration).timeout
+	speed_factor -= _factor
