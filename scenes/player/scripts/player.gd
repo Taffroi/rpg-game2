@@ -102,8 +102,6 @@ func make_invulnerable(_duration : float = 1.0) -> void:
 	pass
 	
 func adjust_speed(_factor : float, _duration: float) -> void:
-	print(_factor)
 	speed_factor += _factor
-	print(speed_factor)
 	await get_tree().create_timer(_duration).timeout
 	speed_factor -= _factor

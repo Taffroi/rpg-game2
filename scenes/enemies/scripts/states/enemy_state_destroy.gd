@@ -39,6 +39,9 @@ func enter() -> void:
 	enemy.animation_player.animation_finished.connect(_on_animation_finished) # dès que l'anim est finie, fais la fonction _on_animation_finished
 	
 	disable_hurtbox()
+	
+	await get_tree().create_timer(0.15).timeout
+	
 	drop_items()
 	pass
 	
@@ -79,5 +82,6 @@ func drop_items() -> void:
 			var drop : ItemPickup = PICKUP.instantiate() as ItemPickup
 			drop.item_data = drops[ i ].item
 			enemy.get_parent().call_deferred("add_child", drop) # add_child(drop) en mode safe = call_deferred, attend la fin du process de la frame
-			drop.global_position = enemy.global_position + Vector2(randf()*16,randf()*16)
+			drop.global_position = enemy.global_position
+			drop.velocity = enemy.velocity.rotated( randf_range(-1.5, 1.5 ) ) * randf_range( 0.8, 1.2 ) # Random angle + random vitesse
 	pass

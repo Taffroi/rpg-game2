@@ -1,6 +1,6 @@
 @tool
 
-class_name ItemPickup extends Node2D
+class_name ItemPickup extends CharacterBody2D
 
 @export var item_data : ItemData : set = _set_item_data
 
@@ -14,7 +14,12 @@ func _ready() -> void:
 		return
 	area_2d.body_entered.connect(_on_body_entered)
 	
-		
+func _physics_process(delta: float) -> void:
+	var collision_info = move_and_collide( velocity * delta )
+	if collision_info:
+		velocity = velocity.bounce( collision_info.get_normal() ) # prends la direction du mur de la collision (get normal) et donne une vélocité opposée (.bounce)
+	velocity -= velocity * delta * 4.5
+	
 func _on_body_entered(b) -> void:
 	if b is Player: # si l'entité qui rentre dans la zone est un joueur
 		if item_data: # vérifie qu'il y a bien un item rattaché au drop
