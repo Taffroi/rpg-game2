@@ -8,10 +8,8 @@ tags:
 
 ## Moteur 2D Action-RPG en développement
 
-Basé sur celui de MichealGames, ce moteur de jeu est développé pour un potentiel portage de **tuez moi** par cerise_yaya sur RPG Maker.
+Basé sur celui de MichealGames, ce moteur de jeu est développé pour un potentiel portage d'un jeu RPG Maker sur un moteur dédié.
 
 ### Roadmap
 
-Avant d'être prêt à commencer à porter le jeu de Yaya :
 - Création d'inventaire
-- Et plus
